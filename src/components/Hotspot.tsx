@@ -19,21 +19,13 @@ export function Hotspot({ def, chore, onClick }: Props) {
       className="absolute w-14 h-14 flex items-center justify-center active:scale-110 transition-transform"
     >
       {showMess ? (
-        // CSS stain blob — organic smudge shape, blurred edges
-        <div
-          className={isDirty ? 'animate-pulse' : ''}
-          style={{
-            width: 40,
-            height: 38,
-            background: isDirty
-              ? 'rgba(176, 72, 32, 0.58)'   // rust/terracotta for dirty
-              : 'rgba(107, 91, 149, 0.48)',  // muted plum for claimed
-            borderRadius: '62% 38% 54% 46% / 44% 58% 42% 56%',
-            filter: 'blur(3px)',
-            boxShadow: isDirty
-              ? '0 0 8px 2px rgba(176, 72, 32, 0.35)'
-              : '0 0 6px 1px rgba(107, 91, 149, 0.3)',
-          }}
+        // Dirty/claimed — large pulsing dot with glow ring
+        <span
+          className={`rounded-full border-2 border-white shadow-lg block
+                      ${isDirty
+                        ? 'w-7 h-7 bg-pink animate-ping'
+                        : 'w-6 h-6 bg-plum/80 border-white/60'}`}
+          style={isDirty ? { boxShadow: '0 0 0 4px rgba(255,143,163,0.4), 0 2px 8px rgba(0,0,0,0.25)' } : undefined}
         />
       ) : (
         // Clean — small mint dot

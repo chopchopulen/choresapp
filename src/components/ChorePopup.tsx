@@ -42,12 +42,12 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
 
       {/* centered square card */}
       <div className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none">
-        <div className="bg-cream rounded-3xl border-2 border-yellow shadow-2xl w-72 h-72 flex flex-col p-4 pointer-events-auto">
+        <div className="bg-cream rounded-3xl border-2 border-yellow shadow-2xl w-80 h-80 flex flex-col p-4 pointer-events-auto">
 
           {/* top row: thumbnail + info */}
           <div className="flex gap-3 mb-3">
             <div
-              className="w-20 h-20 rounded-xl flex-shrink-0"
+              className="w-28 h-28 rounded-xl flex-shrink-0"
               style={sceneStyle(def.sceneIndex)}
             />
             <div className="flex-1 min-w-0">

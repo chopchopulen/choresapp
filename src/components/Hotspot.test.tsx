@@ -39,15 +39,16 @@ describe('Hotspot', () => {
     expect(btn.style.left).toBe('30%')
   })
 
-  it('shows stain blob when dirty', () => {
+  it('shows large dot when dirty', () => {
     const { container } = render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
-    const blob = container.querySelector('[style*="border-radius"]')
-    expect(blob).toBeTruthy()
+    const dot = container.querySelector('.rounded-full.bg-pink')
+    expect(dot).toBeTruthy()
   })
 
-  it('shows stain blob when claimed', () => {
+  it('shows dot when claimed', () => {
     const { container } = render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
-    const blob = container.querySelector('[style*="border-radius"]')
-    expect(blob).toBeTruthy()
+    // claimed dot has plum background class
+    const dot = container.querySelector('.rounded-full')
+    expect(dot).toBeTruthy()
   })
 })

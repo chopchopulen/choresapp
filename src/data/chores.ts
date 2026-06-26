@@ -22,9 +22,9 @@ export interface ChoreDefinition {
 export const CHORE_DEFINITIONS: ChoreDefinition[] = [
   { id: 'kitchen-sink',  label: 'Kitchen Sink',     room: 'Kitchen',           top: '15.2%', left: '33%', sceneIndex: 0, messEmoji: '🍽️', cropWidthPct: 17.3 },
   { id: 'kitchen-floor', label: 'Kitchen Floor',     room: 'Kitchen',           top: '26.1%', left: '35%', sceneIndex: 2, messEmoji: '💧', cropWidthPct: 17.3 },
-  { id: 'kitchen-table', label: 'Kitchen Table',     room: 'Kitchen',           top: '38%', left: '35%', sceneIndex: 0, messEmoji: '🍽️', cropWidthPct: 20.5 },
-  { id: 'lr-floor',      label: 'Living Room Floor', room: 'Living Room',       top: '69.5%', left: '19.5%', sceneIndex: 2, messEmoji: '💧', cropWidthPct: 15.0 },
+  { id: 'kitchen-table', label: 'Kitchen Table',     room: 'Kitchen',           top: '38%', left: '35%', sceneIndex: 0, messEmoji: '🍽️', cropWidthPct: 14.2 },
+  { id: 'lr-floor',      label: 'Living Room Floor', room: 'Living Room',       top: '70%', left: '17%', sceneIndex: 2, messEmoji: '💧', cropWidthPct: 13.4 },
   { id: 'hallway',       label: 'Hallway Floor',     room: 'Hallway',           top: '49.9%', left: '61.9%', sceneIndex: 2, messEmoji: '💧', cropWidthPct: 28 },
-  { id: 'bath1-sink',    label: 'Bathroom 1',        room: 'Bathroom 1',        top: '75.5%', left: '46%', sceneIndex: 3, messEmoji: '🧴', cropWidthPct: 12.6 },
+  { id: 'bath1-sink',    label: 'Bathroom 1',        room: 'Bathroom 1',        top: '72%', left: '49.5%', sceneIndex: 3, messEmoji: '🧴', cropWidthPct: 10.2 },
   { id: 'bath2-sink',    label: 'Bathroom 2',        room: 'Bathroom 2',        top: '67%', left: '72%', sceneIndex: 3, messEmoji: '🧴', cropWidthPct: 15.8 },
 ]

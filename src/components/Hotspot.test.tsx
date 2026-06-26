@@ -39,16 +39,13 @@ describe('Hotspot', () => {
     expect(btn.style.left).toBe('30%')
   })
 
-  it('shows large dot when dirty', () => {
-    const { container } = render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
-    const dot = container.querySelector('.rounded-full.bg-pink')
-    expect(dot).toBeTruthy()
+  it('shows exclamation when dirty', () => {
+    render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
+    expect(screen.getByText('❗')).toBeTruthy()
   })
 
-  it('shows dot when claimed', () => {
-    const { container } = render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
-    // claimed dot has plum background class
-    const dot = container.querySelector('.rounded-full')
-    expect(dot).toBeTruthy()
+  it('shows indicator when claimed', () => {
+    render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
+    expect(screen.getByText('🔵')).toBeTruthy()
   })
 })

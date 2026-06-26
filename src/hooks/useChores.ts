@@ -46,8 +46,9 @@ export function useChores() {
 
   useEffect(() => {
     // initial fetch
-    supabase.from('chores').select('*').then(({ data }) => {
-      if (!data) return
+    supabase.from('chores').select('*').then(({ data, error }) => {
+      console.log('[supabase] fetch', { data, error })
+      if (error || !data) return
       const map: Record<string, Chore> = {}
       data.forEach((row: DbRow) => { map[row.id] = rowToChore(row) })
       setChores(map)

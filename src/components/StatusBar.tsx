@@ -8,7 +8,7 @@ export function StatusBar({ currentUser, onSwitchUser }: Props) {
     <div className="flex items-center justify-between px-4 py-2.5 bg-plum text-cream">
       <span className="font-display font-bold text-base">
         <span aria-hidden="true">🏠 </span>
-        Apt 4B Chores
+        Arthaus Fam
       </span>
       <button
         onClick={onSwitchUser}

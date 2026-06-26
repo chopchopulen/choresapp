@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Apt 4B Chores',
-        short_name: 'Chores',
+        name: 'Arthaus Fam',
+        short_name: 'Arthaus',
         theme_color: '#6B5B95',
         background_color: '#FFF8F0',
         display: 'standalone',

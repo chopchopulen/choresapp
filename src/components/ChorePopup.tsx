@@ -38,65 +38,54 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
   return (
     <>
       {/* backdrop */}
-      <div
-        className="fixed inset-0 bg-deep-plum/50 z-10"
-        onClick={onClose}
-      />
-      {/* centered modal card */}
-      <div className="fixed inset-0 z-20 flex items-center justify-center px-5 pointer-events-none">
-      <div className="bg-cream rounded-3xl border-2 border-yellow p-5 shadow-2xl w-full max-w-xs pointer-events-auto">
-        <p className="font-accent text-mint text-sm font-semibold">{def.room}</p>
-        <h2 className="font-display font-bold text-xl text-deep-plum mb-3">{def.label}</h2>
+      <div className="fixed inset-0 bg-deep-plum/50 z-10" onClick={onClose} />
 
-        {/* mess scene thumbnail */}
-        <div
-          className="w-full h-28 rounded-xl mb-3"
-          style={sceneStyle(def.sceneIndex)}
-        />
+      {/* centered square card */}
+      <div className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none">
+        <div className="bg-cream rounded-3xl border-2 border-yellow shadow-2xl w-72 h-72 flex flex-col p-4 pointer-events-auto">
 
-        {/* flagged/claimed info */}
-        {chore.flaggedBy && (
-          <p className="text-pink text-xs font-medium mb-3">
-            ⚑ Flagged by {chore.flaggedBy}
-            {chore.flaggedAt ? ` · ${timeAgo(chore.flaggedAt)}` : ''}
-            {chore.claimedBy ? ` · Claimed by ${chore.claimedBy}` : ''}
-          </p>
-        )}
+          {/* top row: thumbnail + info */}
+          <div className="flex gap-3 mb-3">
+            <div
+              className="w-20 h-20 rounded-xl flex-shrink-0"
+              style={sceneStyle(def.sceneIndex)}
+            />
+            <div className="flex-1 min-w-0">
+              <p className="font-accent text-mint text-xs font-semibold leading-tight">{def.room}</p>
+              <h2 className="font-display font-bold text-lg text-deep-plum leading-tight">{def.label}</h2>
+              {chore.flaggedBy && (
+                <p className="text-pink text-xs font-medium mt-1 leading-tight">
+                  ⚑ {chore.flaggedBy}
+                  {chore.flaggedAt ? ` · ${timeAgo(chore.flaggedAt)}` : ''}
+                  {chore.claimedBy ? <><br />🧹 {chore.claimedBy}</> : null}
+                </p>
+              )}
+            </div>
+          </div>
 
-        {/* context-aware action buttons */}
-        <div className="flex flex-col gap-2">
-          {chore.state === 'clean' && (
-            <button
-              onClick={onFlagDirty}
-              className="w-full py-3 rounded-xl bg-pink text-white font-display font-semibold text-sm active:scale-95 transition-transform"
-            >
-              ⚑ Flag dirty
+          {/* buttons — flex-1 so they fill remaining space */}
+          <div className="flex flex-col gap-1.5 flex-1 justify-end">
+            {chore.state === 'clean' && (
+              <button onClick={onFlagDirty} className="w-full py-2 rounded-xl bg-pink text-white font-display font-semibold text-sm active:scale-95 transition-transform">
+                ⚑ Flag dirty
+              </button>
+            )}
+            {chore.state === 'dirty' && (
+              <button onClick={onClaim} className="w-full py-2 rounded-xl bg-mint text-deep-plum font-display font-semibold text-sm active:scale-95 transition-transform">
+                🧹 Claim — I'll handle it
+              </button>
+            )}
+            {(chore.state === 'dirty' || chore.state === 'claimed') && (
+              <button onClick={onMarkClean} className="w-full py-2 rounded-xl bg-yellow text-deep-plum font-display font-semibold text-sm active:scale-95 transition-transform">
+                ✓ Mark clean
+              </button>
+            )}
+            <button onClick={onClose} className="w-full py-2 rounded-xl border border-plum/20 text-plum font-display text-sm active:scale-95 transition-transform">
+              Cancel
             </button>
-          )}
-          {chore.state === 'dirty' && (
-            <button
-              onClick={onClaim}
-              className="w-full py-3 rounded-xl bg-mint text-deep-plum font-display font-semibold text-sm active:scale-95 transition-transform"
-            >
-              🧹 Claim — I'll handle it
-            </button>
-          )}
-          {(chore.state === 'dirty' || chore.state === 'claimed') && (
-            <button
-              onClick={onMarkClean}
-              className="w-full py-3 rounded-xl bg-yellow text-deep-plum font-display font-semibold text-sm active:scale-95 transition-transform"
-            >
-              ✓ Mark clean
-            </button>
-          )}
-          <button
-            onClick={onClose}
-            className="w-full py-2.5 rounded-xl border border-plum/20 text-plum font-display text-sm active:scale-95 transition-transform"
-          >
-            Cancel
-          </button>
+          </div>
+
         </div>
-      </div>
       </div>
     </>
   )

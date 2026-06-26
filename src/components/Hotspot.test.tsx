@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event'
 import { Hotspot } from './Hotspot'
 import type { ChoreDefinition, Chore } from '../data/chores'
 
+vi.mock('../assets/floorplanpopup1.png', () => ({ default: '' }))
+
 const def: ChoreDefinition = {
   id: 'kitchen-sink',
   label: 'Kitchen Sink',
@@ -39,13 +41,15 @@ describe('Hotspot', () => {
     expect(btn.style.left).toBe('30%')
   })
 
-  it('shows mess emoji when dirty', () => {
-    render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
-    expect(screen.getByText('🍽️')).toBeTruthy()
+  it('shows scene overlay div when dirty', () => {
+    const { container } = render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
+    const overlay = container.querySelector('[style*="background-size"]')
+    expect(overlay).toBeTruthy()
   })
 
-  it('shows mess emoji when claimed', () => {
-    render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
-    expect(screen.getByText('🍽️')).toBeTruthy()
+  it('shows scene overlay div when claimed', () => {
+    const { container } = render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
+    const overlay = container.querySelector('[style*="background-size"]')
+    expect(overlay).toBeTruthy()
   })
 })

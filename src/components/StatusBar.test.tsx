@@ -6,7 +6,7 @@ import { StatusBar } from './StatusBar'
 describe('StatusBar', () => {
   it('renders the app title', () => {
     render(<StatusBar currentUser="Harry" onSwitchUser={vi.fn()} />)
-    expect(screen.getByText('Apt 4B Chores')).toBeTruthy()
+    expect(screen.getByText('Arthaus Fam')).toBeTruthy()
   })
 
   it('shows the current user name', () => {

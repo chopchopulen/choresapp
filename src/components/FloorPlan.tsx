@@ -2,6 +2,7 @@ import { useState } from 'react'
 import floorplanImg from '../assets/floorplan1.png'
 import { CHORE_DEFINITIONS } from '../data/chores'
 import type { Chore } from '../data/chores'
+import { DIRTY_IMAGES } from '../assets/dirty-images'
 import { Hotspot } from './Hotspot'
 import { ChorePopup } from './ChorePopup'
 
@@ -26,7 +27,29 @@ export function FloorPlan({ currentUser, chores, flagDirty, claim, markClean }: 
       {/* floor plan image */}
       <img src={floorplanImg} alt="Floor plan" className="w-full block" draggable={false} />
 
-      {/* hotspot overlays */}
+      {/* dirty art overlays — positioned behind tap zones */}
+      {CHORE_DEFINITIONS.map((def) => {
+        const chore = chores[def.id] ?? DEFAULT_CHORE(def.id)
+        const img = DIRTY_IMAGES[def.id]
+        if (!img || chore.state === 'clean') return null
+        return (
+          <img
+            key={`dirty-${def.id}`}
+            src={img}
+            alt=""
+            aria-hidden="true"
+            className={`absolute pointer-events-none ${chore.state === 'claimed' ? 'opacity-60' : 'opacity-100'}`}
+            style={{
+              top: def.top,
+              left: def.left,
+              width: `${def.cropWidthPct}%`,
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        )
+      })}
+
+      {/* hotspot tap zones */}
       {CHORE_DEFINITIONS.map((def) => (
         <Hotspot
           key={def.id}

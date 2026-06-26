@@ -12,6 +12,7 @@ const def: ChoreDefinition = {
   left: '30%',
   sceneIndex: 0,
   messEmoji: '🍽️',
+  cropWidthPct: 17.3,
 }
 
 const cleanChore: Chore = { id: 'kitchen-sink', state: 'clean' }

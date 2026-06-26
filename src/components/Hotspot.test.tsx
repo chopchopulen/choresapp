@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event'
 import { Hotspot } from './Hotspot'
 import type { ChoreDefinition, Chore } from '../data/chores'
 
-vi.mock('../assets/floorplanpopup1.png', () => ({ default: '' }))
-
 const def: ChoreDefinition = {
   id: 'kitchen-sink',
   label: 'Kitchen Sink',
@@ -41,15 +39,15 @@ describe('Hotspot', () => {
     expect(btn.style.left).toBe('30%')
   })
 
-  it('shows scene overlay div when dirty', () => {
+  it('shows stain blob when dirty', () => {
     const { container } = render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
-    const overlay = container.querySelector('[style*="background-size"]')
-    expect(overlay).toBeTruthy()
+    const blob = container.querySelector('[style*="border-radius"]')
+    expect(blob).toBeTruthy()
   })
 
-  it('shows scene overlay div when claimed', () => {
+  it('shows stain blob when claimed', () => {
     const { container } = render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
-    const overlay = container.querySelector('[style*="background-size"]')
-    expect(overlay).toBeTruthy()
+    const blob = container.querySelector('[style*="border-radius"]')
+    expect(blob).toBeTruthy()
   })
 })

@@ -1,5 +1,3 @@
-import type { CSSProperties } from 'react'
-import popupImg from '../assets/floorplanpopup1.png'
 import type { ChoreDefinition, Chore } from '../data/chores'
 
 interface Props {
@@ -8,41 +6,37 @@ interface Props {
   onClick: () => void
 }
 
-function sceneStyle(sceneIndex: number): CSSProperties {
-  const col = sceneIndex % 3
-  const row = Math.floor(sceneIndex / 3)
-  const x = col === 0 ? '0%' : col === 1 ? '50%' : '100%'
-  const y = row === 0 ? '0%' : row === 1 ? '50%' : '100%'
-  return {
-    backgroundImage: `url(${popupImg})`,
-    backgroundSize: '300% 300%',
-    backgroundPosition: `${x} ${y}`,
-    backgroundRepeat: 'no-repeat',
-  }
-}
-
 export function Hotspot({ def, chore, onClick }: Props) {
   const isDirty = chore.state === 'dirty'
   const isClaimed = chore.state === 'claimed'
   const showMess = isDirty || isClaimed
 
   return (
-    // Large invisible tap zone — 44px minimum for mobile touch targets
     <button
       aria-label={def.label}
       onClick={onClick}
       style={{ top: def.top, left: def.left, transform: 'translate(-50%, -50%)' }}
-      className="absolute w-16 h-16 flex items-center justify-center active:scale-110 transition-transform"
+      className="absolute w-14 h-14 flex items-center justify-center active:scale-110 transition-transform"
     >
       {showMess ? (
-        // Dirty scene crop from popup grid — overlaid on floor plan
+        // CSS stain blob — organic smudge shape, blurred edges
         <div
-          className={`w-14 h-14 rounded-lg shadow-lg border-2 border-white/80
-                      ${isDirty ? 'animate-pulse' : 'opacity-75'}`}
-          style={sceneStyle(def.sceneIndex)}
+          className={isDirty ? 'animate-pulse' : ''}
+          style={{
+            width: 40,
+            height: 38,
+            background: isDirty
+              ? 'rgba(176, 72, 32, 0.58)'   // rust/terracotta for dirty
+              : 'rgba(107, 91, 149, 0.48)',  // muted plum for claimed
+            borderRadius: '62% 38% 54% 46% / 44% 58% 42% 56%',
+            filter: 'blur(3px)',
+            boxShadow: isDirty
+              ? '0 0 8px 2px rgba(176, 72, 32, 0.35)'
+              : '0 0 6px 1px rgba(107, 91, 149, 0.3)',
+          }}
         />
       ) : (
-        // Clean state — small colored dot
+        // Clean — small mint dot
         <span className="w-3.5 h-3.5 rounded-full bg-mint/90 border-2 border-white/70 shadow-md block" />
       )}
     </button>

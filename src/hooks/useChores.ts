@@ -31,6 +31,8 @@ export function choreReducer(
         ...state,
         [action.id]: { id: action.id, state: 'clean' },
       }
+    default:
+      return state
   }
 }
 

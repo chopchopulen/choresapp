@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+vi.mock('../lib/supabase', () => import('../__mocks__/supabase'))
 import { choreReducer } from './useChores'
 import type { Chore } from '../data/chores'
 

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { FloorPlan } from './FloorPlan'
+import { CHORE_DEFINITIONS } from '../data/chores'
 
 // Vite asset imports return empty string in jsdom
 vi.mock('../assets/floorplan1.png', () => ({ default: '' }))
@@ -13,9 +14,9 @@ describe('FloorPlan', () => {
     expect(screen.getByAltText('Floor plan')).toBeTruthy()
   })
 
-  it('renders 9 hotspot buttons', () => {
+  it('renders a hotspot button per chore definition', () => {
     render(<FloorPlan currentUser="Harry" chores={{}} flagDirty={vi.fn()} claim={vi.fn()} markClean={vi.fn()} />)
-    expect(screen.getAllByRole('button').length).toBe(9)
+    expect(screen.getAllByRole('button').length).toBe(CHORE_DEFINITIONS.length)
   })
 
   it('opens popup when a hotspot is clicked', async () => {

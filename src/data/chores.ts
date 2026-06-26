@@ -19,13 +19,13 @@ export interface ChoreDefinition {
 }
 
 export const CHORE_DEFINITIONS: ChoreDefinition[] = [
-  { id: 'kitchen-sink',  label: 'Kitchen Sink',     room: 'Kitchen',           top: '13%', left: '37%', sceneIndex: 0, messEmoji: '🍽️' },
-  { id: 'trash',         label: 'Trash Area',        room: 'Kitchen / Hallway', top: '43%', left: '35%', sceneIndex: 1, messEmoji: '🗑️' },
-  { id: 'lr-floor',      label: 'Living Room Floor', room: 'Living Room',       top: '65%', left: '15%', sceneIndex: 2, messEmoji: '💧' },
-  { id: 'bath1-sink',    label: 'Bathroom Sink',     room: 'Bathroom 1',        top: '70%', left: '48%', sceneIndex: 3, messEmoji: '🧴' },
-  { id: 'bath1-toilet',  label: 'Toilet',            room: 'Bathroom 1',        top: '80%', left: '44%', sceneIndex: 4, messEmoji: '🚽' },
-  { id: 'tub',           label: 'Shower / Tub',      room: 'Shower/Tub Room',   top: '70%', left: '62%', sceneIndex: 5, messEmoji: '🛁' },
-  { id: 'lr-couch',      label: 'Couch',             room: 'Living Room',       top: '76%', left: '8%',  sceneIndex: 6, messEmoji: '🧦' },
-  { id: 'laundry',       label: 'W/D Laundry',       room: 'W/D Closet',        top: '40%', left: '6%',  sceneIndex: 7, messEmoji: '👕' },
-  { id: 'plant',         label: 'Potted Plant',       room: 'Living Room',       top: '58%', left: '22%', sceneIndex: 8, messEmoji: '🥀' },
+  { id: 'kitchen-sink',  label: 'Kitchen Sink',     room: 'Kitchen',           top: '15%', left: '33%', sceneIndex: 0, messEmoji: '🍽️' },
+  { id: 'kitchen-floor', label: 'Kitchen Floor',     room: 'Kitchen',           top: '26%', left: '35%', sceneIndex: 2, messEmoji: '💧' },
+  { id: 'kitchen-table', label: 'Kitchen Table',     room: 'Kitchen',           top: '38%', left: '35%', sceneIndex: 0, messEmoji: '🍽️' },
+  { id: 'trash',         label: 'Trash Area',        room: 'Kitchen / Hallway', top: '43%', left: '27%', sceneIndex: 1, messEmoji: '🗑️' },
+  { id: 'fridge',        label: 'Fridge',            room: 'Kitchen',           top: '39%', left: '46%', sceneIndex: 0, messEmoji: '🧊' },
+  { id: 'lr-floor',      label: 'Living Room Floor', room: 'Living Room',       top: '67%', left: '23%', sceneIndex: 2, messEmoji: '💧' },
+  { id: 'hallway',       label: 'Hallway Floor',     room: 'Hallway',           top: '53%', left: '61%', sceneIndex: 2, messEmoji: '💧' },
+  { id: 'bath1-sink',    label: 'Bathroom 1',        room: 'Bathroom 1',        top: '70%', left: '50%', sceneIndex: 3, messEmoji: '🧴' },
+  { id: 'bath2-sink',    label: 'Bathroom 2',        room: 'Bathroom 2',        top: '70%', left: '72%', sceneIndex: 3, messEmoji: '🧴' },
 ]

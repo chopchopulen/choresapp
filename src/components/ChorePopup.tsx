@@ -29,26 +29,26 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
 
       {/* centered square card */}
       <div className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none">
-        <div className="bg-cream rounded-3xl border-2 border-yellow shadow-2xl w-80 h-80 flex flex-col p-4 pointer-events-auto">
+        <div className="bg-cream rounded-3xl border-2 border-yellow shadow-2xl w-80 flex flex-col p-4 pointer-events-auto">
 
-          {/* top row: thumbnail + info */}
-          <div className="flex gap-3 mb-3">
-            <img
-              src={DIRTY_IMAGES[def.id]}
-              alt={def.label}
-              className="w-28 h-28 rounded-xl flex-shrink-0 object-cover"
-            />
-            <div className="flex-1 min-w-0">
-              <p className="font-accent text-mint text-xs font-semibold leading-tight">{def.room}</p>
-              <h2 className="font-display font-bold text-lg text-deep-plum leading-tight">{def.label}</h2>
-              {chore.flaggedBy && (
-                <p className="text-pink text-xs font-medium mt-1 leading-tight">
-                  ⚑ {chore.flaggedBy}
-                  {chore.flaggedAt ? ` · ${timeAgo(chore.flaggedAt)}` : ''}
-                  {chore.claimedBy ? <><br />🧹 {chore.claimedBy}</> : null}
-                </p>
-              )}
-            </div>
+          {/* image — full width */}
+          <img
+            src={DIRTY_IMAGES[def.id]}
+            alt={def.label}
+            className="w-full h-40 rounded-xl object-cover mb-2 flex-shrink-0"
+          />
+
+          {/* info row */}
+          <div className="mb-2">
+            <p className="font-accent text-mint text-xs font-semibold leading-tight">{def.room}</p>
+            <h2 className="font-display font-bold text-base text-deep-plum leading-tight">{def.label}</h2>
+            {chore.flaggedBy && (
+              <p className="text-pink text-xs font-medium leading-tight">
+                ⚑ {chore.flaggedBy}
+                {chore.flaggedAt ? ` · ${timeAgo(chore.flaggedAt)}` : ''}
+                {chore.claimedBy ? <><br />🧹 {chore.claimedBy}</> : null}
+              </p>
+            )}
           </div>
 
           {/* buttons — flex-1 so they fill remaining space */}

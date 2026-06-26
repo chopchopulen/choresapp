@@ -39,11 +39,12 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
     <>
       {/* backdrop */}
       <div
-        className="fixed inset-0 bg-deep-plum/40 z-10"
+        className="fixed inset-0 bg-deep-plum/50 z-10"
         onClick={onClose}
       />
-      {/* sheet */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 bg-cream rounded-t-3xl border-t-4 border-yellow p-5 shadow-xl">
+      {/* centered modal card */}
+      <div className="fixed inset-0 z-20 flex items-center justify-center px-5 pointer-events-none">
+      <div className="bg-cream rounded-3xl border-2 border-yellow p-5 shadow-2xl w-full max-w-xs pointer-events-auto">
         <p className="font-accent text-mint text-sm font-semibold">{def.room}</p>
         <h2 className="font-display font-bold text-xl text-deep-plum mb-3">{def.label}</h2>
 
@@ -95,6 +96,7 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
             Cancel
           </button>
         </div>
+      </div>
       </div>
     </>
   )

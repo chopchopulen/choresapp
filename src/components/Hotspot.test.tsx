@@ -11,6 +11,7 @@ const def: ChoreDefinition = {
   top: '10%',
   left: '30%',
   sceneIndex: 0,
+  messEmoji: '🍽️',
 }
 
 const cleanChore: Chore = { id: 'kitchen-sink', state: 'clean' }
@@ -36,5 +37,15 @@ describe('Hotspot', () => {
     const btn = screen.getByRole('button')
     expect(btn.style.top).toBe('10%')
     expect(btn.style.left).toBe('30%')
+  })
+
+  it('shows mess emoji when dirty', () => {
+    render(<Hotspot def={def} chore={dirtyChore} onClick={vi.fn()} />)
+    expect(screen.getByText('🍽️')).toBeTruthy()
+  })
+
+  it('shows mess emoji when claimed', () => {
+    render(<Hotspot def={def} chore={claimedChore} onClick={vi.fn()} />)
+    expect(screen.getByText('🍽️')).toBeTruthy()
   })
 })

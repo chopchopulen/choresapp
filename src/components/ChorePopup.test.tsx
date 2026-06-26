@@ -11,6 +11,7 @@ const def: ChoreDefinition = {
   top: '43%',
   left: '35%',
   sceneIndex: 1,
+  messEmoji: '🗑️',
 }
 
 const cleanChore:   Chore = { id: 'trash', state: 'clean' }

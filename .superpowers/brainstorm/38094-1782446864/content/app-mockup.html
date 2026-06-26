@@ -1,0 +1,312 @@
+<h2>Chores App — Visual Design</h2>
+<p class="subtitle">Floor plan interface with cottagecore styling. Scroll down to see both the main view and the popup card.</p>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@400;500&family=Caveat:wght@400;600&display=swap');
+
+  .app-frame {
+    background: #FFF8F0;
+    border-radius: 28px;
+    width: 375px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(58,46,57,0.18);
+    overflow: hidden;
+    border: 2px solid #e8d5c0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .status-bar {
+    background: #6B5B95;
+    color: #FFF8F0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .status-bar .app-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .user-chip {
+    background: #FFD66B;
+    color: #3A2E39;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+  }
+
+  .floor-plan-wrapper {
+    position: relative;
+    width: 100%;
+    background: #f5e8d8;
+  }
+
+  .floor-plan-wrapper img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Hotspot dots */
+  .hotspot {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    transition: transform 0.15s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.7);
+  }
+
+  .hotspot:hover { transform: scale(1.2); }
+
+  /* clean state */
+  .hotspot.clean {
+    width: 14px; height: 14px;
+    background: rgba(127, 217, 196, 0.85);
+  }
+
+  /* dirty state */
+  .hotspot.dirty {
+    width: 20px; height: 20px;
+    background: rgba(255,143,163,0.95);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  /* claimed state */
+  .hotspot.claimed {
+    width: 18px; height: 18px;
+    background: rgba(107, 91, 149, 0.9);
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,143,163,0.6), 0 2px 6px rgba(0,0,0,0.2); }
+    50% { box-shadow: 0 0 0 7px rgba(255,143,163,0), 0 2px 6px rgba(0,0,0,0.2); }
+  }
+
+  /* approximate positions on the floor plan */
+  /* kitchen sink */
+  .hs-kitchen-sink   { top: 12%; left: 35%; }
+  /* trash */
+  .hs-trash          { top: 42%; left: 33%; }
+  /* living room floor */
+  .hs-lr-floor       { top: 68%; left: 14%; }
+  /* living room couch */
+  .hs-lr-couch       { top: 78%; left: 10%; }
+  /* bathroom 1 sink */
+  .hs-bath1-sink     { top: 72%; left: 51%; }
+  /* bathroom 1 toilet */
+  .hs-bath1-toilet   { top: 80%; left: 47%; }
+  /* shower/tub */
+  .hs-tub            { top: 72%; left: 62%; }
+  /* W/D laundry */
+  .hs-laundry        { top: 38%; left: 5%; }
+  /* potted plant */
+  .hs-plant          { top: 58%; left: 22%; }
+
+  /* Legend */
+  .legend {
+    padding: 8px 14px;
+    display: flex;
+    gap: 12px;
+    background: #FFF8F0;
+    border-top: 1px solid #e8d5c0;
+    font-size: 11px;
+    color: #3A2E39;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* Popup card */
+  .popup-card {
+    background: #FFF8F0;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    border-top: 3px solid #FFD66B;
+  }
+
+  .popup-room {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    color: #7FD9C4;
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+
+  .popup-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #3A2E39;
+    margin-bottom: 10px;
+  }
+
+  .mess-thumb {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: #f0e0cc;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Caveat', cursive;
+    color: #6B5B95;
+    font-size: 15px;
+  }
+
+  .flagged-by {
+    font-size: 12px;
+    color: #FF8FA3;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-flag {
+    background: #FF8FA3;
+    color: #fff;
+  }
+
+  .btn-claim {
+    background: #7FD9C4;
+    color: #3A2E39;
+  }
+
+  .btn-clean {
+    background: #FFD66B;
+    color: #3A2E39;
+  }
+
+  .btn-cancel {
+    background: transparent;
+    color: #6B5B95;
+    border: 1.5px solid #e8d5c0;
+    font-size: 13px;
+    justify-content: center;
+  }
+
+  .section-label {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #6B5B95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0 10px;
+  }
+</style>
+
+<!-- TWO FRAMES SIDE BY SIDE -->
+<div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:flex-start;margin-top:12px;">
+
+  <!-- FRAME 1: Main view (floor plan) -->
+  <div>
+    <div class="section-label" style="text-align:center">Main view</div>
+    <div class="app-frame" style="width:320px">
+      <div class="status-bar">
+        <span class="app-title">🏠 Apt 4B Chores</span>
+        <span class="user-chip">Harry ▾</span>
+      </div>
+      <div class="floor-plan-wrapper">
+        <img src="file:///Users/harry/Downloads/floorplan1.png" alt="Floor plan" />
+        <!-- clean spots -->
+        <div class="hotspot clean hs-kitchen-sink" title="Kitchen sink"></div>
+        <div class="hotspot clean hs-bath1-sink" title="Bathroom 1 sink"></div>
+        <div class="hotspot clean hs-bath1-toilet" title="Bathroom 1 toilet"></div>
+        <div class="hotspot clean hs-tub" title="Shower/Tub"></div>
+        <div class="hotspot clean hs-lr-couch" title="Living room couch"></div>
+        <div class="hotspot clean hs-plant" title="Potted plant"></div>
+        <!-- dirty spots (pulsing) -->
+        <div class="hotspot dirty hs-trash" title="Trash — flagged dirty by Ariel"></div>
+        <div class="hotspot dirty hs-lr-floor" title="Living room floor — flagged dirty"></div>
+        <!-- claimed spot -->
+        <div class="hotspot claimed hs-laundry" title="W/D Laundry — claimed by Dylan"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:#7FD9C4"></span> Clean</div>
+        <div class="legend-item"><span class="dot" style="background:#FF8FA3"></span> Dirty</div>
+        <div class="legend-item"><span class="dot" style="background:#6B5B95"></span> Claimed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAME 2: Popup card (dirty state) -->
+  <div>
+    <div class="section-label" style="text-align:center">Tap dirty spot → popup</div>
+    <div class="app-frame" style="width:320px">
+      <div class="status-bar">
+        <span class="app-title">🏠 Apt 4B Chores</span>
+        <span class="user-chip">Harry ▾</span>
+      </div>
+      <div class="floor-plan-wrapper" style="filter:brightness(0.7);pointer-events:none">
+        <img src="file:///Users/harry/Downloads/floorplan1.png" alt="Floor plan" />
+        <div class="hotspot dirty hs-trash" style="animation:none;transform:scale(1.4)"></div>
+      </div>
+      <div class="popup-card">
+        <div class="popup-room">Kitchen / Hallway</div>
+        <div class="popup-title">Trash Area</div>
+        <div class="mess-thumb">
+          <span>🗑️ mess illustration here</span>
+        </div>
+        <div class="flagged-by">⚑ Flagged dirty by Ariel · 2h ago</div>
+        <div class="action-buttons">
+          <button class="btn btn-claim">🧹 Claim — I'll handle it</button>
+          <button class="btn btn-clean">✓ Mark clean</button>
+          <button class="btn btn-flag" style="background:#e8d5c0;color:#6B5B95">Re-flag dirty</button>
+          <button class="btn btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin:20px auto;max-width:700px;background:#f5e8d8;border-radius:14px;padding:16px 20px">
+  <p style="font-family:'Inter',sans-serif;font-size:13px;color:#3A2E39;margin:0">
+    <strong style="font-family:'Baloo 2',sans-serif;color:#6B5B95">Notes:</strong>
+    Dirty hotspots pulse pink to grab attention. Claimed spots turn plum.
+    The mess thumbnail in the popup will be the actual scene illustration from <code>floorplanpopup1.png</code>.
+    Hotspot positions will be tuned once the real floor plan image is loaded at its actual display size.
+  </p>
+</div>

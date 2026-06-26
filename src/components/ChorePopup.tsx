@@ -1,6 +1,5 @@
-import type { CSSProperties } from 'react'
-import popupImg from '../assets/floorplanpopup1.png'
 import type { ChoreDefinition, Chore } from '../data/chores'
+import { DIRTY_IMAGES } from '../assets/dirty-images'
 
 interface Props {
   def: ChoreDefinition
@@ -12,18 +11,6 @@ interface Props {
   onClose: () => void
 }
 
-function sceneStyle(sceneIndex: number): CSSProperties {
-  const col = sceneIndex % 3
-  const row = Math.floor(sceneIndex / 3)
-  const x = col === 0 ? '0%' : col === 1 ? '50%' : '100%'
-  const y = row === 0 ? '0%' : row === 1 ? '50%' : '100%'
-  return {
-    backgroundImage: `url(${popupImg})`,
-    backgroundSize: '300% 300%',
-    backgroundPosition: `${x} ${y}`,
-    backgroundRepeat: 'no-repeat',
-  }
-}
 
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime()
@@ -46,9 +33,10 @@ export function ChorePopup({ def, chore, onFlagDirty, onClaim, onMarkClean, onCl
 
           {/* top row: thumbnail + info */}
           <div className="flex gap-3 mb-3">
-            <div
-              className="w-28 h-28 rounded-xl flex-shrink-0"
-              style={sceneStyle(def.sceneIndex)}
+            <img
+              src={DIRTY_IMAGES[def.id]}
+              alt={def.label}
+              className="w-28 h-28 rounded-xl flex-shrink-0 object-cover"
             />
             <div className="flex-1 min-w-0">
               <p className="font-accent text-mint text-xs font-semibold leading-tight">{def.room}</p>
